@@ -20,6 +20,7 @@ entry("kbdint");
 entry("exit");
 entry("wait");
 entry("pipe");
+entry("kbdint");
 entry("read");
 entry("write");
 entry("close");
