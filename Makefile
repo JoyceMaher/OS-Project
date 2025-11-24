@@ -18,6 +18,7 @@ OBJS = \
   $K/trap.o \
   $K/syscall.o \
   $K/sysproc.o \
+  $K/sysutil.o \
   $K/bio.o \
   $K/fs.o \
   $K/log.o \
@@ -131,7 +132,9 @@ UPROGS=\
 	$U/_kill\
 	$U/_ln\
 	$U/_ls\
+	$U/_fact\
 	$U/_mkdir\
+	$U/_keybcount\
 	$U/_rm\
 	$U/_sh\
 	$U/_stressfs\

@@ -14,11 +14,12 @@ sub entry {
     print " ecall\n";
     print " ret\n";
 }
-	
+
 entry("fork");
 entry("exit");
 entry("wait");
 entry("pipe");
+entry("kbdint");
 entry("read");
 entry("write");
 entry("close");
