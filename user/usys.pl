@@ -14,8 +14,9 @@ sub entry {
     print " ecall\n";
     print " ret\n";
 }
-	
+
 entry("fork");
+entry("kbdint");
 entry("exit");
 entry("wait");
 entry("pipe");
