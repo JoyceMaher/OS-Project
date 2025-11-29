@@ -16,7 +16,6 @@ sub entry {
 }
 
 entry("fork");
-entry("kbdint");
 entry("exit");
 entry("wait");
 entry("pipe");

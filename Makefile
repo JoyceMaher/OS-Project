@@ -144,7 +144,7 @@ UPROGS=\
 	$U/_stressfs\
 	$U/_usertests\
 	$U/_grind\
-	$U/_wc\
+	$U/_wordcount\
 	$U/_zombie\
 
 fs.img: mkfs/mkfs README $(UPROGS)
