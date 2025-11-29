@@ -19,7 +19,6 @@ OBJS = \
   $K/trap.o \
   $K/syscall.o \
   $K/sysproc.o \
-  $K/sysutil.o \
   $K/bio.o \
   $K/fs.o \
   $K/log.o \
@@ -127,6 +126,7 @@ mkfs/mkfs: mkfs/mkfs.c $K/fs.h $K/param.h
 UPROGS=\
 	$U/_cat\
 	$U/_find\
+	$U/_diff\
 	$U/_add\
 	$U/_echo\
 	$U/_keyboardcount\
@@ -139,7 +139,6 @@ UPROGS=\
 	$U/_ls\
 	$U/_fact\
 	$U/_mkdir\
-	$U/_keybcount\
 	$U/_rm\
 	$U/_sh\
 	$U/_stressfs\

@@ -109,7 +109,6 @@ static uint64 (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
 [SYS_kbdint]  sys_kbdint,
 [SYS_exit]    sys_exit,
-[SYS_kbdint]  sys_kbdint,
 [SYS_wait]    sys_wait,
 [SYS_pipe]    sys_pipe,
 [SYS_read]    sys_read,

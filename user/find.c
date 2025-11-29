@@ -22,7 +22,6 @@ void find(char *currentPath, char *targetName) {
         return;
     }
 
-
     if (entryInfo.type != T_DIR) {
         close(directoryFileDescriptor);
         return;
