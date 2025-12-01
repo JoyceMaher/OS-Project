@@ -21,6 +21,14 @@ sys_getpid(void)
   return myproc()->pid;
 }
 
+extern uint64 syscall_count;
+
+uint64
+sys_countsyscall(void)
+{
+    return syscall_count;
+}
+
 uint64
 sys_fork(void)
 {
