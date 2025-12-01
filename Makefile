@@ -139,6 +139,13 @@ UPROGS=\
 	$U/_grind\
 	$U/_wc\
 	$U/_zombie\
+	$U/_cp\
+	$U/_touch\
+	$U/_mv\
+	$U/_tail\
+
+
+
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
