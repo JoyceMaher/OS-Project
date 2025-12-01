@@ -23,6 +23,7 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int kbdint(void);
+int sysrand(void);
 
 // ulib.c
 int stat(const char*, struct stat*);

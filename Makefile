@@ -128,6 +128,7 @@ UPROGS=\
 	$U/_find\
 	$U/_diff\
 	$U/_add\
+	$U/_randtest\
 	$U/_echo\
 	$U/_keyboardcount\
 	$U/_sleep\

@@ -91,3 +91,15 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+uint64
+sys_sysrand(void)
+{
+  static uint32 seed = 1;
+  const uint32 a = 1664525;
+  const uint32 c = 1013904223;
+
+  seed = a * seed + c;
+
+  return (uint64)seed;
+}
