@@ -38,3 +38,4 @@ entry("sleep");
 entry("uptime");
 entry("kbdint");
 entry("sysrand");
+entry("countsyscall")
