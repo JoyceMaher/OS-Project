@@ -111,3 +111,19 @@ sys_sysrand(void)
 
   return (uint64)seed;
 }
+
+uint64
+sys_datetime(void)
+{
+  uint xticks;
+
+  acquire(&tickslock);
+  xticks = ticks;
+  release(&tickslock);
+
+  #ifdef BUILD_TIME
+  return BUILD_TIME + (xticks / 100);
+  #else
+  return xticks / 100;
+  #endif
+}

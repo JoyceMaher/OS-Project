@@ -70,6 +70,7 @@ CFLAGS += -fno-builtin-memcpy -Wno-main
 CFLAGS += -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf
 CFLAGS += -I.
 CFLAGS += $(shell $(CC) -fno-stack-protector -E -x c /dev/null >/dev/null 2>&1 && echo -fno-stack-protector)
+CFLAGS += -DBUILD_TIME=$(shell date +%s)
 
 # Disable PIE when possible (for Ubuntu 16.10 toolchain)
 ifneq ($(shell $(CC) -dumpspecs 2>/dev/null | grep -e '[^f]no-pie'),)
@@ -130,7 +131,6 @@ UPROGS=\
 	$U/_add\
 	$U/_randtest\
 	$U/_echo\
-	$U/_keyboardcount\
 	$U/_sleep\
 	$U/_forktest\
 	$U/_grep\
@@ -149,6 +149,7 @@ UPROGS=\
 	$U/_zombie\
 	$U/_kbdint\
 	$U/_countsyscall\
+        $U/_datetimetest\
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
