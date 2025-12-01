@@ -147,6 +147,7 @@ UPROGS=\
 	$U/_grind\
 	$U/_wordcount\
 	$U/_zombie\
+	$U/_kbdint\
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
