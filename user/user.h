@@ -27,6 +27,7 @@ int kbdint(void);
 int sysrand(void);
 int countsyscall(void);
 int datetime(void);
+int getptable(void);
 
 // ulib.c
 int stat(const char*, struct stat*);

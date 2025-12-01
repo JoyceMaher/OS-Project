@@ -150,6 +150,7 @@ UPROGS=\
 	$U/_kbdint\
 	$U/_countsyscall\
         $U/_datetimetest\
+	$U/_getptabletest\
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
