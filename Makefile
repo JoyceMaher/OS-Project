@@ -149,8 +149,15 @@ UPROGS=\
 	$U/_zombie\
 	$U/_kbdint\
 	$U/_countsyscall\
-        $U/_datetimetest\
+  $U/_datetimetest\
 	$U/_getptabletest\
+	$U/_cp\
+	$U/_touch\
+	$U/_mv\
+	$U/_tail\
+
+
+
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
