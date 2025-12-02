@@ -6,6 +6,7 @@
 #include "spinlock.h"
 #include "proc.h"
 
+
 uint64
 sys_exit(void)
 {
@@ -19,6 +20,32 @@ uint64
 sys_getpid(void)
 {
   return myproc()->pid;
+}
+
+uint64
+sys_getptable(void)
+{
+    int count = 0;
+
+    // Get reference to process table (defined in proc.c)
+    struct proc *p = proc;  // or &proc[0]
+
+    for(int i = 0; i < NPROC; i++){
+        // Check each slot in process table
+        if(p[i].state != UNUSED){
+            count++;
+        }
+    }
+
+    return count;
+}
+
+extern uint64 syscall_count;
+
+uint64
+sys_countsyscall(void)
+{
+    return syscall_count;
 }
 
 uint64
@@ -90,4 +117,32 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+uint64
+sys_sysrand(void)
+{
+  static uint32 seed = 1;
+  const uint32 a = 1664525;
+  const uint32 c = 1013904223;
+
+  seed = a * seed + c;
+
+  return (uint64)seed;
+}
+
+uint64
+sys_datetime(void)
+{
+  uint xticks;
+
+  acquire(&tickslock);
+  xticks = ticks;
+  release(&tickslock);
+
+  #ifdef BUILD_TIME
+  return BUILD_TIME + (xticks / 100);
+  #else
+  return xticks / 100;
+  #endif
 }
