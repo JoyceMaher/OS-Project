@@ -6,6 +6,12 @@
 #include "proc.h"
 #include "defs.h"
 
+
+#define SCHED_ROUND_ROBIN   0
+#define SCHED_FCFS          1
+#define SCHED_SJF           2
+#define SCHED_PRIORITY      3
+
 struct cpu cpus[NCPU];
 
 struct proc proc[NPROC];
@@ -451,20 +457,63 @@ update_time()
   }
 }
 
-//part3
-int sched_mode = SCHED_ROUND_ROBIN;  // Assign the chosen scheduler here
-struct proc *choose_next_process() {
 
+//part3
+int sched_mode = SCHED_FCFS;  // Default to FCFS scheduler
+
+struct proc *choose_next_process(void)
+{
   struct proc *p;
 
   if(sched_mode == SCHED_ROUND_ROBIN) {
-    for(p = proc; p < &proc[NPROC]; p++) {
-      if (p->state == RUNNABLE)
+    // Round Robin: simple circular search
+    static struct proc *last_proc = 0;
+    struct proc *start = last_proc;
+
+    if(start == 0 || start >= &proc[NPROC-1])
+      start = &proc[0];
+
+    for(p = start; p < &proc[NPROC]; p++) {
+      acquire(&p->lock);
+      if(p->state == RUNNABLE) {
+        last_proc = p;
+        release(&p->lock);
         return p;
       }
+      release(&p->lock);
+    }
+
+    // Wrap around
+    for(p = &proc[0]; p < start; p++) {
+      acquire(&p->lock);
+      if(p->state == RUNNABLE) {
+        last_proc = p;
+        release(&p->lock);
+        return p;
+      }
+      release(&p->lock);
+    }
+  }
+  else if(sched_mode == SCHED_FCFS) {
+    // FCFS: First Come First Serve
+    struct proc *selected = 0;
+    uint64 earliest_time = ~0;  // Max value
+
+    for(p = proc; p < &proc[NPROC]; p++) {
+      acquire(&p->lock);
+      if(p->state == RUNNABLE) {
+        // Choose process with earliest creation_time
+        if(p->creation_time < earliest_time) {
+          earliest_time = p->creation_time;
+          selected = p;
+        }
+      }
+      release(&p->lock);
+    }
+    return selected;
   }
 
-  // Add more else statements each time you create a new scheduler
+  // Add more else-if blocks for SJF and Priority schedulers
 
   return 0;
 }

@@ -7,6 +7,11 @@
 #include "proc.h"
 
 
+//int argint(int, int*);
+//int argaddr(int, uint64*);
+//int argstr(int, char*, int);
+
+extern int sched_mode;
 uint64
 sys_exit(void)
 {
@@ -27,11 +32,9 @@ sys_getptable(void)
 {
     int count = 0;
 
-    // Get reference to process table (defined in proc.c)
-    struct proc *p = proc;  // or &proc[0]
+    struct proc *p = proc;
 
     for(int i = 0; i < NPROC; i++){
-        // Check each slot in process table
         if(p[i].state != UNUSED){
             count++;
         }
@@ -145,4 +148,24 @@ sys_datetime(void)
   #else
   return xticks / 100;
   #endif
+}
+
+uint64
+sys_set_scheduler(void)
+{
+  struct proc *p = myproc();
+  int mode = p->trapframe->a0;  // Direct access - no argint needed
+
+  // Validate mode (0-3)
+  if(mode < 0 || mode > 3)
+    return -1;
+
+  sched_mode = mode;
+  return 0;
+}
+
+uint64
+sys_get_scheduler(void)
+{
+  return sched_mode;
 }
