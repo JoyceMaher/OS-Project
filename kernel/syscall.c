@@ -105,6 +105,7 @@ extern uint64 sys_mkdir(void);
 extern uint64 sys_close(void);
 extern uint64 sys_countsyscall(void);
 extern uint64 sys_datetime(void);
+extern uint64 sys_getptable(void);
 
 // An array mapping syscall numbers from syscall.h
 // to the function that handles the system call.
@@ -134,6 +135,7 @@ static uint64 (*syscalls[])(void) = {
 [SYS_close]   sys_close,
 [SYS_sysrand]    sys_sysrand,
 [SYS_datetime] sys_datetime,
+[SYS_getptable]   sys_getptable,
 
 };
 uint64 syscall_count = 0;

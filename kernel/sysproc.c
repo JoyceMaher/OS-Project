@@ -6,6 +6,7 @@
 #include "spinlock.h"
 #include "proc.h"
 
+
 uint64
 sys_exit(void)
 {
@@ -19,6 +20,24 @@ uint64
 sys_getpid(void)
 {
   return myproc()->pid;
+}
+
+uint64
+sys_getptable(void)
+{
+    int count = 0;
+
+    // Get reference to process table (defined in proc.c)
+    struct proc *p = proc;  // or &proc[0]
+
+    for(int i = 0; i < NPROC; i++){
+        // Check each slot in process table
+        if(p[i].state != UNUSED){
+            count++;
+        }
+    }
+
+    return count;
 }
 
 extern uint64 syscall_count;

@@ -40,3 +40,4 @@ entry("kbdint");
 entry("sysrand");
 entry("countsyscall");
 entry("datetime");
+entry("getptable");

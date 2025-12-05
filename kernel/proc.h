@@ -103,11 +103,15 @@ struct proc {
   struct context context;      // swtch() here to run process
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
-  char name[16];               // Process name (debugging)
-};
+  char name[16];
 
+	uint creation_time;          // Ticks when process was created
+  uint run_time;               // How long the process has run
+};             // Process name (debugging)
 
-// schedular constants to set the scheduling mode
+extern struct proc proc[NPROC];
+
+// part 3 new lines
 #define SCHED_ROUND_ROBIN 0
 #define SCHED_FCFS        1
 
