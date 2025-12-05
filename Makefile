@@ -151,12 +151,16 @@ UPROGS=\
 	$U/_countsyscall\
   $U/_datetimetest\
 	$U/_getptabletest\
+<<<<<<< HEAD
+	$U/_schedtest\
+=======
 	$U/_cp\
 	$U/_touch\
 	$U/_mv\
 	$U/_tail\
 
 
+>>>>>>> 2b0f62b966203bd3c3cec21cfaa40096806f45cc
 
 
 fs.img: mkfs/mkfs README $(UPROGS)
