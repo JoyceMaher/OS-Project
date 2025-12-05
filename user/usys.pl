@@ -41,3 +41,5 @@ entry("sysrand");
 entry("countsyscall");
 entry("datetime");
 entry("getptable");
+entry("get_scheduler");
+entry("set_scheduler");

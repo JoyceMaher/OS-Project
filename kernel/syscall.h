@@ -25,3 +25,5 @@
 #define SYS_countsyscall   23
 #define SYS_datetime 24
 #define SYS_getptable   25
+#define SYS_set_scheduler  29
+#define SYS_get_scheduler  30
