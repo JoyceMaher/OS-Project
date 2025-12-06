@@ -107,6 +107,7 @@ struct proc {
 
 	uint creation_time;          // Ticks when process was created
   uint run_time;               // How long the process has run
+  int priority;
 };             // Process name (debugging)
 
 extern struct proc proc[NPROC];
@@ -114,5 +115,6 @@ extern struct proc proc[NPROC];
 // part 3 new lines
 #define SCHED_ROUND_ROBIN 0
 #define SCHED_FCFS        1
+#define SCHED_PRIORITY_BASED 2
 
 extern int sched_mode;  // Declare global scheduler mode

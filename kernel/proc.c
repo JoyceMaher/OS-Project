@@ -513,8 +513,25 @@ struct proc *choose_next_process(void)
     return selected;
   }
 
-  // Add more else-if blocks for SJF and Priority schedulers
+ if(sched_mode == SCHED_PRIORITY_BASED) {
+    struct proc *selected = 0;
+    int highest_pri = -1;
 
+    for(p = proc; p < &proc[NPROC]; p++) {
+      if(p->state == RUNNABLE) {
+        if(p->priority > highest_pri) {
+          highest_pri = p->priority;
+          selected = p;
+        }
+        else if(p->priority == highest_pri && selected != 0) {
+          if(p->creation_time < selected->creation_time) {
+            selected = p;
+          }
+        }
+      }
+    }
+    return selected;
+  }
   return 0;
 }
 
