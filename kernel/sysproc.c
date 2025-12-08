@@ -123,7 +123,7 @@ sys_uptime(void)
 }
 
 uint64
-sys_sysrand(void)
+sys_sysrand(void)  //jojo
 {
   static uint32 seed = 1;
   const uint32 a = 1664525;
@@ -135,7 +135,7 @@ sys_sysrand(void)
 }
 
 uint64
-sys_datetime(void)
+sys_datetime(void)   //jojo
 {
   uint xticks;
 

@@ -82,7 +82,7 @@ argstr(int n, char *buf, int max)
 // Prototypes for the functions that handle system calls.
 extern uint64 sys_fork(void);
 extern uint64 sys_kbdint(void);
-extern uint64 sys_sysrand(void);
+extern uint64 sys_sysrand(void);  //jojo
 extern uint64 sys_exit(void);
 extern uint64 sys_wait(void);
 extern uint64 sys_pipe(void);
@@ -104,7 +104,7 @@ extern uint64 sys_link(void);
 extern uint64 sys_mkdir(void);
 extern uint64 sys_close(void);
 extern uint64 sys_countsyscall(void);
-extern uint64 sys_datetime(void);
+extern uint64 sys_datetime(void);  //jojo
 extern uint64 sys_getptable(void);
 
 // An array mapping syscall numbers from syscall.h
@@ -133,8 +133,8 @@ static uint64 (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-[SYS_sysrand]    sys_sysrand,
-[SYS_datetime] sys_datetime,
+[SYS_sysrand]    sys_sysrand,   //jojo
+[SYS_datetime] sys_datetime,    //jojo
 [SYS_getptable]   sys_getptable,
 
 };

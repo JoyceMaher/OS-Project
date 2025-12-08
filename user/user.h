@@ -24,9 +24,9 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int kbdint(void);
-int sysrand(void);
+int sysrand(void); //jojo
 int countsyscall(void);
-int datetime(void);
+int datetime(void); //jojo
 int getptable(void);
 int get_scheduler(void);
 int set_scheduler(int mode);
