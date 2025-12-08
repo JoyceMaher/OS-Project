@@ -49,9 +49,3 @@ void *memcpy(void *, const void *, uint);
 // umalloc.c
 void* malloc(uint);
 void free(void*);
-
-
-#define SCHED_ROUND_ROBIN   0
-#define SCHED_FCFS          1
-#define SCHED_SJF           2
-#define SCHED_PRIORITY      3

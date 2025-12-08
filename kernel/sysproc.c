@@ -6,11 +6,6 @@
 #include "spinlock.h"
 #include "proc.h"
 
-
-//int argint(int, int*);
-//int argaddr(int, uint64*);
-//int argstr(int, char*, int);
-
 extern int sched_mode;
 uint64
 sys_exit(void)
