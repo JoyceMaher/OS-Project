@@ -6,11 +6,6 @@
 #include "spinlock.h"
 #include "proc.h"
 
-
-//int argint(int, int*);
-//int argaddr(int, uint64*);
-//int argstr(int, char*, int);
-
 extern int sched_mode;
 uint64
 sys_exit(void)
@@ -123,7 +118,7 @@ sys_uptime(void)
 }
 
 uint64
-sys_sysrand(void)
+sys_sysrand(void)  //jojo
 {
   static uint32 seed = 1;
   const uint32 a = 1664525;
@@ -135,7 +130,7 @@ sys_sysrand(void)
 }
 
 uint64
-sys_datetime(void)
+sys_datetime(void)   //jojo
 {
   uint xticks;
 

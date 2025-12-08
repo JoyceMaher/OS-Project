@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 
   printf("Testing sysrand() system call:\n");
   for(i = 0; i < 10; i++) {
-    printf("Random number %d: %d\n", i, sysrand());
+    printf("Random number %d: %u\n", i, sysrand());
   }
 
   exit(0);

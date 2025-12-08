@@ -24,9 +24,9 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int kbdint(void);
-int sysrand(void);
+int sysrand(void); //jojo
 int countsyscall(void);
-int datetime(void);
+int datetime(void); //jojo
 int getptable(void);
 int get_scheduler(void);
 int set_scheduler(int mode);
@@ -49,9 +49,3 @@ void *memcpy(void *, const void *, uint);
 // umalloc.c
 void* malloc(uint);
 void free(void*);
-
-
-#define SCHED_ROUND_ROBIN   0
-#define SCHED_FCFS          1
-#define SCHED_SJF           2
-#define SCHED_PRIORITY      3

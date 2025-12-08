@@ -149,7 +149,7 @@ UPROGS=\
 	$U/_zombie\
 	$U/_kbdint\
 	$U/_countsyscall\
-  $U/_datetimetest\
+        $U/_datetimetest\
 	$U/_getptabletest\
 	$U/_schedtest\
 	$U/_cp\

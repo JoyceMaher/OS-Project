@@ -37,9 +37,9 @@ entry("sbrk");
 entry("sleep");
 entry("uptime");
 entry("kbdint");
-entry("sysrand");
+entry("sysrand"); #jojo
 entry("countsyscall");
-entry("datetime");
+entry("datetime"); #jojo
 entry("getptable");
 entry("get_scheduler");
 entry("set_scheduler");
