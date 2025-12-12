@@ -13,6 +13,7 @@
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
     "files.associations": {
-        "types.h": "c"
+        "types.h": "c",
+        "user.h": "c"
     }
 }

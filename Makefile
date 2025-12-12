@@ -143,6 +143,10 @@ UPROGS=\
 	$U/_touch\
 	$U/_mv\
 	$U/_tail\
+	$U/_getppid\
+	$U/_testuptime\
+	$U/_shutdowntest\
+
 
 
 

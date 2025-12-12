@@ -91,3 +91,27 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+// function by >3mo_3Zz<
+uint64
+sys_getppid(void)
+{
+  struct proc *p = myproc();
+  if(p == 0)
+    return 0;
+  if(p->parent)
+    return p->parent->pid;
+  return 0;
+}
+
+//3mo was here
+
+uint64
+sys_shutdown(void)
+{
+    printf("System is shutting down...\n");
+
+    // QEMU RISC-V shutdown address
+    *(volatile uint32*)0x100000 = 1;
+
+    return 0;  // won't actually return
+}
