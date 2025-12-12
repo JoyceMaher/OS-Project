@@ -1,6 +1,6 @@
 struct stat;
 struct datetime;
-
+typedef unsigned int uint;
 // system calls
 int fork(void);
 int exit(int) __attribute__((noreturn));
@@ -27,6 +27,8 @@ int kbdint(void);
 int sysrand(void); //jojo
 int countsyscall(void);
 int datetime(void); //jojo
+int getppid(void);
+int shutdown(void);
 int getptable(void);
 int get_scheduler(void);
 int set_scheduler(int mode);

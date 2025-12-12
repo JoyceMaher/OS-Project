@@ -106,7 +106,8 @@ extern uint64 sys_close(void);
 extern uint64 sys_countsyscall(void);
 extern uint64 sys_datetime(void);  //jojo
 extern uint64 sys_getptable(void);
-
+extern uint64 sys_getppid(void);
+extern uint64 sys_shutdown(void);
 // An array mapping syscall numbers from syscall.h
 // to the function that handles the system call.
 static uint64 (*syscalls[])(void) = {
@@ -133,6 +134,8 @@ static uint64 (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[SYS_getppid]  sys_getppid, //EZZ
+[SYS_shutdown] sys_shutdown, //EZZ
 [SYS_sysrand]    sys_sysrand,   //jojo
 [SYS_datetime] sys_datetime,    //jojo
 [SYS_getptable]   sys_getptable,
