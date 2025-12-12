@@ -5,6 +5,7 @@ OBJS = \
   $K/entry.o \
   $K/start.o \
   $K/console.o \
+  $K/sysutil.o \
   $K/printf.o \
   $K/uart.o \
   $K/kalloc.o \
@@ -69,6 +70,7 @@ CFLAGS += -fno-builtin-memcpy -Wno-main
 CFLAGS += -fno-builtin-printf -fno-builtin-fprintf -fno-builtin-vprintf
 CFLAGS += -I.
 CFLAGS += $(shell $(CC) -fno-stack-protector -E -x c /dev/null >/dev/null 2>&1 && echo -fno-stack-protector)
+CFLAGS += -DBUILD_TIME=$(shell date +%s)
 
 # Disable PIE when possible (for Ubuntu 16.10 toolchain)
 ifneq ($(shell $(CC) -dumpspecs 2>/dev/null | grep -e '[^f]no-pie'),)
@@ -124,21 +126,32 @@ mkfs/mkfs: mkfs/mkfs.c $K/fs.h $K/param.h
 
 UPROGS=\
 	$U/_cat\
+	$U/_find\
+	$U/_diff\
+	$U/_add\
+	$U/_randtest\
 	$U/_echo\
+	$U/_sleep\
 	$U/_forktest\
 	$U/_grep\
 	$U/_init\
 	$U/_kill\
 	$U/_ln\
 	$U/_ls\
+	$U/_fact\
 	$U/_mkdir\
 	$U/_rm\
 	$U/_sh\
 	$U/_stressfs\
 	$U/_usertests\
 	$U/_grind\
-	$U/_wc\
+	$U/_wordcount\
 	$U/_zombie\
+	$U/_kbdint\
+	$U/_countsyscall\
+        $U/_datetimetest\
+	$U/_getptabletest\
+	$U/_schedtest\
 	$U/_cp\
 	$U/_touch\
 	$U/_mv\
@@ -147,6 +160,7 @@ UPROGS=\
 	$U/_testuptime\
 	$U/_shutdowntest\
 
+	$U/_test_fcfs\
 
 
 

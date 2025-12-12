@@ -81,6 +81,8 @@ argstr(int n, char *buf, int max)
 
 // Prototypes for the functions that handle system calls.
 extern uint64 sys_fork(void);
+extern uint64 sys_kbdint(void);
+extern uint64 sys_sysrand(void);  //jojo
 extern uint64 sys_exit(void);
 extern uint64 sys_wait(void);
 extern uint64 sys_pipe(void);
@@ -101,17 +103,18 @@ extern uint64 sys_unlink(void);
 extern uint64 sys_link(void);
 extern uint64 sys_mkdir(void);
 extern uint64 sys_close(void);
-extern uint64 sys_getppid(void);
-extern uint64 sys_uptime(void);
-extern uint64 sys_shutdown(void);
-
+extern uint64 sys_countsyscall(void);
+extern uint64 sys_datetime(void);  //jojo
+extern uint64 sys_getptable(void);
 
 // An array mapping syscall numbers from syscall.h
 // to the function that handles the system call.
 static uint64 (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
+[SYS_kbdint]  sys_kbdint,
 [SYS_exit]    sys_exit,
 [SYS_wait]    sys_wait,
+[SYS_countsyscall]  sys_countsyscall,
 [SYS_pipe]    sys_pipe,
 [SYS_read]    sys_read,
 [SYS_kill]    sys_kill,
@@ -130,11 +133,12 @@ static uint64 (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-[SYS_getppid]  sys_getppid,
-[SYS_shutdown] sys_shutdown,
+[SYS_sysrand]    sys_sysrand,   //jojo
+[SYS_datetime] sys_datetime,    //jojo
+[SYS_getptable]   sys_getptable,
 
 };
-
+uint64 syscall_count = 0;
 void
 syscall(void)
 {
@@ -144,7 +148,7 @@ syscall(void)
   num = p->trapframe->a7;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
     // Use num to lookup the system call function for num, call it,
-    // and store its return value in p->trapframe->a0
+    syscall_count++;     // and store its return value in p->trapframe->a0
     p->trapframe->a0 = syscalls[num]();
   } else {
     printf("%d %s: unknown sys call %d\n",

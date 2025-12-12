@@ -1,6 +1,5 @@
 struct stat;
-typedef unsigned int uint;
-
+struct datetime;
 
 // system calls
 int fork(void);
@@ -24,11 +23,13 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-int getppid(void);
-int shutdown(void);
-
-
-
+int kbdint(void);
+int sysrand(void); //jojo
+int countsyscall(void);
+int datetime(void); //jojo
+int getptable(void);
+int get_scheduler(void);
+int set_scheduler(int mode);
 
 // ulib.c
 int stat(const char*, struct stat*);

@@ -22,3 +22,10 @@
 #define SYS_close  21
 #define SYS_getppid 22
 #define SYS_shutdown  23
+#define SYS_kbdint 22
+#define SYS_sysrand   23  //jojo
+#define SYS_countsyscall   23
+#define SYS_datetime 24  //jojo
+#define SYS_getptable   25
+#define SYS_set_scheduler  29
+#define SYS_get_scheduler  30

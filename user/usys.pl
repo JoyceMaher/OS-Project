@@ -38,3 +38,10 @@ entry("sleep");
 entry("uptime");
 entry("getppid");
 entry("shutdown");
+entry("kbdint");
+entry("sysrand"); #jojo
+entry("countsyscall");
+entry("datetime"); #jojo
+entry("getptable");
+entry("get_scheduler");
+entry("set_scheduler");

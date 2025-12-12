@@ -6,6 +6,7 @@
 #include "spinlock.h"
 #include "proc.h"
 
+extern int sched_mode;
 uint64
 sys_exit(void)
 {
@@ -19,6 +20,30 @@ uint64
 sys_getpid(void)
 {
   return myproc()->pid;
+}
+
+uint64
+sys_getptable(void)
+{
+    int count = 0;
+
+    struct proc *p = proc;
+
+    for(int i = 0; i < NPROC; i++){
+        if(p[i].state != UNUSED){
+            count++;
+        }
+    }
+
+    return count;
+}
+
+extern uint64 syscall_count;
+
+uint64
+sys_countsyscall(void)
+{
+    return syscall_count;
 }
 
 uint64
@@ -91,27 +116,51 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
-// function by >3mo_3Zz<
+
 uint64
-sys_getppid(void)
+sys_sysrand(void)  //jojo
+{
+  static uint32 seed = 1;
+  const uint32 a = 1664525;
+  const uint32 c = 1013904223;
+
+  seed = a * seed + c;
+
+  return (uint64)seed;
+}
+
+uint64
+sys_datetime(void)   //jojo
+{
+  uint xticks;
+
+  acquire(&tickslock);
+  xticks = ticks;
+  release(&tickslock);
+
+  #ifdef BUILD_TIME
+  return BUILD_TIME + (xticks / 100);
+  #else
+  return xticks / 100;
+  #endif
+}
+
+uint64
+sys_set_scheduler(void)
 {
   struct proc *p = myproc();
-  if(p == 0)
-    return 0;
-  if(p->parent)
-    return p->parent->pid;
+  int mode = p->trapframe->a0;  // Direct access - no argint needed
+
+  // Validate mode (0-3)
+  if(mode < 0 || mode > 3)
+    return -1;
+
+  sched_mode = mode;
   return 0;
 }
 
-//3mo was here
-
 uint64
-sys_shutdown(void)
+sys_get_scheduler(void)
 {
-    printf("System is shutting down...\n");
-
-    // QEMU RISC-V shutdown address
-    *(volatile uint32*)0x100000 = 1;
-
-    return 0;  // won't actually return
+  return sched_mode;
 }
